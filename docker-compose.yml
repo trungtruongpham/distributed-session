@@ -1,0 +1,52 @@
+version: "3.8"
+services:
+  session-service:
+    container_name: session-service
+    build:
+     context: ./SessionService
+     dockerfile: ./SessionService/Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8080
+    links:
+      - "redis"
+    networks:
+      - internal
+  customer-service:
+    container_name: customer-service
+    build:
+     context: ./CustomerService
+     dockerfile: ./CustomerService/Dockerfile
+    ports:
+      - "8082:8082"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8082
+    links:
+      - "redis"
+      - "session-service"
+    networks:
+      - internal
+  nginx-proxy:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    restart: always
+    depends_on:
+    - session-service
+    networks:
+    - internal
+  redis:
+    image: redis:latest
+    container_name: db
+    ports:
+      - "6379:6379"
+    networks:
+    - internal
+networks:
+  internal:
+      driver: bridge

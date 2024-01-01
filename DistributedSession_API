@@ -1,0 +1,83 @@
+{
+	"info": {
+		"_postman_id": "fbe3c79f-ff61-4bb5-a57f-32064984c71d",
+		"name": "API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10725331"
+	},
+	"item": [
+		{
+			"name": "Session: Add Data",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/session/data?key=abc&data=abc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"session",
+						"data"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "abc"
+						},
+						{
+							"key": "data",
+							"value": "abc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Session: Get Data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/session/data?key=abc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"session",
+						"data"
+					],
+					"query": [
+						{
+							"key": "key",
+							"value": "abc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Customer: Get Data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost/customer/data",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"path": [
+						"customer",
+						"data"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
